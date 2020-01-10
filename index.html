@@ -230,6 +230,24 @@
 
 			}
 
+			function save() {
+
+				documents[ 0 ].code = codemirror.getValue();
+
+			//	localStorage.codeeditor = JSON.stringify( documents );
+
+				var blob = new Blob( [ codemirror.getValue() ], { type: documents[ 0 ].filetype } );
+				var objectURL = URL.createObjectURL( blob );
+
+				var buttonDownload = document.createElement( "a" );
+
+				buttonDownload.href = objectURL;
+
+				var date = Date.now();
+				buttonDownload.download = documents[ 0 ].filename + "-" + date + ".html";
+
+			}
+
 		// Deflate.
 
 			function decode( string ) {
