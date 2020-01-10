@@ -114,20 +114,6 @@
 
 			window.URL = window.URL || window.webkitURL;
 
-		// deflate.
-
-			function decode( string ) {
-
-				return RawDeflate.inflate( window.atob( string ) );
-
-			}
-
-			function encode( string ) {
-
-				return window.btoa( RawDeflate.deflate( string ) );
-
-			}
-
 			var documents = [{ 
                 filename: "index", 
                 filetype: "text/plain", 
@@ -135,11 +121,11 @@
                 code: "",
             }];
 
-		// editor.
+		// Editor.
 
 			var interval;
 
-			var editor = document.getElementById( 'editor' );
+			var editor = document.getElementById( "editor" );
 
 			var codemirror = CodeMirror( editor, {
 
@@ -162,7 +148,7 @@
 
 					while ( errorLines.length > 0 ) {
 
-						codemirror.removeLineClass( errorLines.shift(), 'background', 'errorLine' );
+						codemirror.removeLineClass( errorLines.shift(), "background", "errorLine" );
 
 					}
 
@@ -174,29 +160,29 @@
 
 					widgets.length = 0;
 
-					// remove html
+				// Remove html.
 
-					var string = '\n';
-					var lines = value.split( '\n' );
+					var string = "\n";
+					var lines = value.split( "\n" );
 					var lineCurrent = 0, lineTotal = lines.length;
 
-					while ( lineCurrent < lineTotal && lines[ lineCurrent ].indexOf( '<script>' ) === -1 ) {
+					while ( lineCurrent < lineTotal && lines[ lineCurrent ].indexOf( "<script>" ) === -1 ) {
 
-						string += '\n';
+						string += "\n";
 						lineCurrent ++;
 
 					}
 
 					var lineStart = lineCurrent ++;
 
-					while ( lineCurrent < lineTotal && lines[ lineCurrent ].indexOf( '<\/script>' ) === -1 ) {
+					while ( lineCurrent < lineTotal && lines[ lineCurrent ].indexOf( "<\/script>" ) === -1 ) {
 
-						string += lines[ lineCurrent ] + '\n';
+						string += lines[ lineCurrent ] + "\n";
 						lineCurrent ++;
 
 					}
 
-					//
+				//
 
 					try {
 
@@ -206,19 +192,16 @@
 
 							var error = result[ i ];
 
-							var message = document.createElement( 'div' );
-							message.className = 'esprima-error';
-							message.textContent = error.message.replace(/Line [0-9]+: /, '');
+							var message = document.createElement( "div" );
+							message.className = "esprima-error";
+							message.textContent = error.message.replace(/Line [0-9]+: /, "");
 
 							var lineNumber = error.lineNumber - 1;
 							errorLines.push( lineNumber );
 
-							codemirror.addLineClass( lineNumber, 'background', 'errorLine' );
+							codemirror.addLineClass( lineNumber, "background", "errorLine" );
 
-							var widget = codemirror.addLineWidget(
-								lineNumber,
-								message
-							);
+							var widget = codemirror.addLineWidget( lineNumber, message );
 
 							widgets.push( widget );
 
@@ -226,19 +209,16 @@
 
 					} catch ( error ) {
 
-						var message = document.createElement( 'div' );
-						message.className = 'esprima-error';
-						message.textContent = error.message.replace(/Line [0-9]+: /, '');
+						var message = document.createElement( "div" );
+						message.className = "esprima-error";
+						message.textContent = error.message.replace(/Line [0-9]+: /, "");
 
 						var lineNumber = error.lineNumber - 1;
 						errorLines.push( lineNumber );
 
-						codemirror.addLineClass( lineNumber, 'background', 'errorLine' );
+						codemirror.addLineClass( lineNumber, "background", "errorLine" );
 
-						var widget = codemirror.addLineWidget(
-							lineNumber,
-							message
-						);
+						var widget = codemirror.addLineWidget( lineNumber, message );
 
 						widgets.push( widget );
 
@@ -250,23 +230,19 @@
 
 			}
 
+		// Deflate.
 
+			function decode( string ) {
 
+				return RawDeflate.inflate( window.atob( string ) );
 
+			}
 
+			function encode( string ) {
 
+				return window.btoa( RawDeflate.deflate( string ) );
 
-
-
-
-
-
-
-
-
-
-
-
+			}
 
 		</script>
 	</body>
