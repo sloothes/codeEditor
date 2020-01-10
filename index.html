@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>html editor</title>
+		<link rel="stylesheet" href="./js/codemirror/codemirror.css">
+		<script src="./js/codemirror/codemirror.js"></script>
+		<script src="./js/codemirror/mode/xml.js"></script>
+		<script src="./js/codemirror/mode/javascript.js"></script>
+		<script src="./js/codemirror/mode/css.js"></script>
+		<script src="./js/codemirror/mode/htmlmixed.js"></script>
+		<script src="./js/rawinflate.js"></script>
+		<script src="./js/rawdeflate.js"></script>
+		<script src="./js/esprima.js"></script>
+
+	</head>
+	<body>
+		<div id="preview"></div>
+		<div id="editor"></div>
+		<div id="toolbar"></div>
+		<div id="popup"></div>
+		<script>
+
+			window.URL = window.URL || window.webkitURL;
+
+			// deflate
+
+			function decode( string ) {
+
+				return RawDeflate.inflate( window.atob( string ) );
+
+			}
+
+			function encode( string ) {
+
+				return window.btoa( RawDeflate.deflate( string ) );
+
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</script>
+	</body>
+</html>
